@@ -44,10 +44,10 @@ mhsBimbinganController.create = async(req,res) => {
 }
 
 mhsBimbinganController.getAll = async (req,res) => {
-    const getDsnMat = await Mahasiswa.findAll({
+    const getDsnMat = await Dosen.findAll({
         include : [
             {
-                model : Dosen
+                model : Mahasiswa
             }
         ]
     });
@@ -59,10 +59,10 @@ mhsBimbinganController.getAll = async (req,res) => {
 mhsBimbinganController.getById = async (req,res) => {
     const {id} = req.params
 
-    const getMhsBim = await Mahasiswa.findOne({
+    const getMhsBim = await Dosen.findOne({
         include : [
             {
-                model : Dosen
+                model : Mahasiswa
             }
         ],
         where : {
