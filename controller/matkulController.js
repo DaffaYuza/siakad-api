@@ -14,6 +14,16 @@ matkulController.index = async(req,res) => {
 
 matkulController.create = async (req,res) => {
     const {nama, kode_matkul, sks} = req.body
+    if (typeof nama !== 'string' || nama.trim() === '') {
+        return res.status(400).json({ message : 'Nama harus berupa Huruf dan wajib diisi !'})
+    }
+    if (kode_matkul === undefined) {
+        return res.status(400).json({ message : 'Kode Matkul wajib diisi !'})
+    }
+    if (isNaN(sks) || sks <= 0) {
+        return res.status(400).json({ message : 'SKS harus berupa angka dan wajib diisi !'})
+    }
+
     try{
         const createMatkul = await MataKuliah.create({
             nama: nama,
@@ -64,6 +74,16 @@ matkulController.getById = async (req,res) => {
 matkulController.update = async (req,res) => {
     const {nama, kode_matkul, sks} = req.body
     const id = req.params.id
+    if (typeof nama !== 'string' || nama.trim() === '') {
+        return res.status(400).json({ message : 'Nama harus berupa Huruf dan wajib diisi !'})
+    }
+    if (kode_matkul === undefined) {
+        return res.status(400).json({ message : 'Kode Matkul wajib diisi !'})
+    }
+    if (isNaN(sks) || sks <= 0) {
+        return res.status(400).json({ message : 'SKS harus berupa angka dan wajib diisi !'})
+    }
+
     try{
         const getDetailMatkul = await MataKuliah.findOne({
             where : {
@@ -72,7 +92,7 @@ matkulController.update = async (req,res) => {
         })
         if(getDetailMatkul === null){
             return res.status(404).json({
-                message: 'Data Not Found !'
+                message: 'ID tidak ditemukan !'
             })
         }
         const updateMatkul = await MataKuliah.update({
@@ -104,7 +124,7 @@ matkulController.delete = async (req,res) => {
         })
         if(!deleteMatkul){
             return res.status(404).json({
-                message: 'Data Not Found !'
+                message: 'ID tidak ditemukan !'
             })
         }
         return res.status(200).json({

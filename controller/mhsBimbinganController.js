@@ -25,8 +25,10 @@ mhsBimbinganController.create = async(req,res) => {
                 id : id_mahasiswa
             }
         })
-        if(getDosen === null || getMhs === null){
-            throw Error("Data Tidak ditemukan !")
+        if(getDosen === null){
+            throw Error("ID Dosen Tidak ditemukan !")
+        } else if (getMhs === null) {
+            throw Error("ID Mahasiswa Tidak ditemukan !")
         } else {
             const createDsnMat = await MhsBimbingan.create({
                 id_mahasiswa : id_mahasiswa,
@@ -89,8 +91,10 @@ mhsBimbinganController.update = async(req,res) => {
                 id : id_mahasiswa
             }
         })
-        if(getDosen === null || getMhs === null){
-            throw Error("Data Tidak ditemukan !")
+        if(getDosen === null){
+            throw Error("ID Dosen Tidak ditemukan !")
+        } else if (getMhs === null) {
+            throw Error("ID Mahasiswa Tidak ditemukan !")
         } else {
             const createDsnMat = await MhsBimbingan.update({
                 id_mahasiswa : id_mahasiswa,
@@ -121,6 +125,11 @@ mhsBimbinganController.delete = async (req,res) => {
                 id : id
             }
         })
+        if (!deleteMhsBim) {
+            return res.status(404).json({
+                message: 'ID tidak ditemukan !'
+            })
+        }
         return res.status(200).json({
             message: 'Data berhasil dihapus !'
         })

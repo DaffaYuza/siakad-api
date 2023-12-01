@@ -14,6 +14,7 @@ dosenMatkulController.index = async(req,res) => {
 
 dosenMatkulController.create = async(req,res) => {
     const {id_dosen, id_matkul} = req.body
+    
     try{
         const getDosen = await Dosen.findOne({
             where : {
@@ -25,8 +26,10 @@ dosenMatkulController.create = async(req,res) => {
                 id : id_matkul
             }
         })
-        if(getDosen === null || getMatkul === null){
-            throw Error("Data Tidak ditemukan !")
+        if(getDosen === null){
+            throw Error("Data Dosen Tidak ditemukan !")
+        } else if (getMatkul === null){
+            throw Error("Data Mata Kuliah tidak ditemukan !")
         } else {
             const createDsnMat = await DosenMatkul.create({
                 id_dosen : id_dosen,
@@ -89,9 +92,11 @@ dosenMatkulController.update = async(req,res) => {
                 id : id_matkul
             }
         })
-        if(getDosen === null || getMatkul === null){
-            throw Error("Data Tidak ditemukan !")
-        } else {
+        if(getDosen === null){
+            throw Error("Data Dosen Tidak ditemukan !")
+        } else if (getMatkul === null){
+            throw Error("Data Mata Kuliah tidak ditemukan !")
+        }else {
             const createDsnMat = await DosenMatkul.update({
                 id_dosen : id_dosen,
                 id_matkul : id_matkul
@@ -120,6 +125,11 @@ dosenMatkulController.delete = async (req,res) => {
                 id : id
             }
         })
+        if (!deleteDsnMat) {
+            return res.status(404).json({
+                message: 'Data tidak ditemukan !'
+            })
+        }
         return res.status(200).json({
             message: 'Data berhasil dihapus !'
         })

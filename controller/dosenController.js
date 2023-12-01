@@ -14,6 +14,16 @@ dosenController.index = async(req,res) => {
 
 dosenController.create = async (req,res) => {
     const {nama, nidn, alamat} = req.body
+    if (typeof nama !== 'string' || nama.trim() === '') {
+        return res.status(400).json({ message: 'Nama harus berupa Huruf dan wajib diisi' });
+    }
+    if (typeof nidn !== 'number' || isNaN(nidn) || nidn <= 0) {
+        return res.status(400).json({ message: 'Nidn harus berupa Angka dan wajib diisi' });
+    }
+    if (typeof alamat !== 'string' || alamat.trim() === '') {
+        return res.status(400).json({ message: 'Alamat harus berupa Huruf dan wajib diisi' });
+    }
+
     try{
         const createDosen = await Dosen.create({
             nama: nama,
@@ -64,6 +74,16 @@ dosenController.getById = async (req,res) => {
 dosenController.update = async (req,res) => {
     const {nama, nidn, alamat} = req.body
     const id = req.params.id
+    if (typeof nama !== 'string' || nama.trim() === '') {
+        return res.status(400).json({ message: 'Nama harus berupa Huruf dan wajib diisi' });
+    }
+    if (typeof nidn !== 'number' || isNaN(nidn) || nidn <= 0) {
+        return res.status(400).json({ message: 'Nidn harus berupa Angka dan wajib diisi' });
+    }
+    if (typeof alamat !== 'string' || alamat.trim() === '') {
+        return res.status(400).json({ message: 'Alamat harus berupa Huruf dan wajib diisi' });
+    }
+
     try{
         const getDetailDosen = await Dosen.findOne({
             where : {
@@ -84,7 +104,7 @@ dosenController.update = async (req,res) => {
                 id : id
             }
         })
-        return res.status(200).json({
+        return res.status(201).json({
             message: 'Data berhasil diubah !'
         })
     } catch(error){

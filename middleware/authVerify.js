@@ -6,7 +6,7 @@ const authVerify = (req, res, next) => {
     try {
         const token = req.headers.authorization?.split("Bearer")[1].trim()
         if(token === undefined){
-            throw Error("Token tidak boleh kosong")
+            throw Error("Token tidak boleh kosong !")
         }
         const verifyToken = jwt.verify(token, process.env.PRIVATE_KEY)
         if(verifyToken){

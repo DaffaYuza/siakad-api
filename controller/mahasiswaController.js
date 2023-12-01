@@ -14,6 +14,16 @@ mahasiswaController.index = async(req,res) => {
 
 mahasiswaController.create = async (req,res) => {
     const {nama, nim, alamat} = req.body
+    if (typeof nama !== 'string' || nama.trim() === '') {
+        return res.status(400).json({ error: 'Nama harus berupa Huruf dan wajib diisi' });
+    }
+    if (isNaN(nim) || nim <= 0) {
+        return res.status(400).json({ error: 'Nim harus berupa Angka dan wajib diisi' });
+    }
+    if (typeof alamat !== 'string' || alamat.trim() === '') {
+        return res.status(400).json({ error: 'Alamat harus berupa Huruf dan wajib diisi' });
+    }
+
     try{
         const createMahasiswa = await Mahasiswa.create({
             nama: nama,
@@ -64,6 +74,16 @@ mahasiswaController.getById = async (req,res) => {
 mahasiswaController.update = async (req,res) => {
     const {nama, nim, alamat} = req.body
     const id = req.params.id
+    if (typeof nama !== 'string' || nama.trim() === '') {
+        return res.status(400).json({ error: 'Nama harus berupa Huruf dan wajib diisi' });
+    }
+    if (typeof nim !== 'number' || isNaN(nim) || nim <= 0) {
+        return res.status(400).json({ error: 'Nim harus berupa Angka dan wajib diisi' });
+    }
+    if (typeof alamat !== 'string' || alamat.trim() === '') {
+        return res.status(400).json({ error: 'Alamat harus berupa Huruf dan wajib diisi' });
+    }
+    
     try{
         const getDetailMhs = await Mahasiswa.findOne({
             where : {
@@ -72,7 +92,7 @@ mahasiswaController.update = async (req,res) => {
         })
         if(getDetailMhs === null){
             return res.status(404).json({
-                message: 'Data Not Found !'
+                message: 'ID tidak ditemukan !'
             })
         }
         const updateMahasiswa = await Mahasiswa.update({
@@ -104,7 +124,7 @@ mahasiswaController.delete = async (req,res) => {
         })
         if(!deleteMhs){
             return res.status(404).json({
-                message: 'Data Not Found !'
+                message: 'ID tidak ditemukan !'
             })
         }
         return res.status(200).json({
