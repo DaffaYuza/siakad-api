@@ -46,34 +46,59 @@ mhsBimbinganController.create = async(req,res) => {
 }
 
 mhsBimbinganController.getAll = async (req,res) => {
-    const getDsnMat = await Dosen.findAll({
-        include : [
-            {
-                model : Mahasiswa
-            }
-        ]
-    });
-    res.json({
-        data : getDsnMat
-    })
+
+    try {
+        const getDsnMat = await MhsBimbingan.findAll({
+            include : [
+                {
+                    model : Mahasiswa,
+                    as: 'Mahasiswa'
+                },
+                {
+                    model : Dosen,
+                    as: 'Dosen Pembimbing'
+                }
+            ]
+        });
+        res.json({
+            data : getDsnMat
+        })   
+    } catch (error) {
+        return res.status(500).json({
+            message: error
+        })
+    }
+    
 }
 
 mhsBimbinganController.getById = async (req,res) => {
     const {id} = req.params
 
-    const getMhsBim = await Dosen.findOne({
-        include : [
-            {
-                model : Mahasiswa
+    try {
+        const getMhsBim = await MhsBimbingan.findOne({
+            include : [
+                {
+                    model : Mahasiswa,
+                    as: 'Mahasiswa'
+                },
+                {
+                    model : Dosen,
+                    as: 'Dosen Pembimbing'
+                }
+            ],
+            where : {
+                id : id
             }
-        ],
-        where : {
-            id : id
-        }
-    });
-    res.json({
-        data : getMhsBim
-    })
+        });
+        return res.json({
+            data : getMhsBim
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message: error
+        })
+    }
+    
 }
 
 mhsBimbinganController.update = async(req,res) => {
