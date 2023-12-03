@@ -31,6 +31,10 @@ DB_PASS=root
 DB_PORT=3306
 
 ```
+* Kemudian jalankan script dibawah ini untuk melakukan migration ke database : 
+```
+npx sequelize-cli db:migrate
+```
 * Coba jalankan menggunakan script dibawah ini : 
 ```
 npm run start
