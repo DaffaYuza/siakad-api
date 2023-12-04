@@ -14,9 +14,9 @@ route.get('/',exampleController.index)
 route.use('/mahasiswa',(req,res,next) => authVerify(req,res,next),routeMahasiswa)
 route.use('/dosen',(req,res,next) => authVerify(req,res,next),routeDosen)
 route.use('/matkul',(req,res,next) => authVerify(req,res,next),routeMatkul)
-route.use('/dosen-matkul',routeDsnMat)
-route.use('/jadwal-matkul',routeJdwlMat)
-route.use('/mhs-bimbingan',routeMhsBim)
+route.use('/dosen-matkul',(req,res,next) => authVerify(req,res,next),routeDsnMat)
+route.use('/jadwal-matkul',(req,res,next) => authVerify(req,res,next),routeJdwlMat)
+route.use('/mhs-bimbingan',(req,res,next) => authVerify(req,res,next),routeMhsBim)
 route.use('/auth',routeUser)
 
 module.exports = route
