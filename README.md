@@ -31,6 +31,10 @@ DB_PASS=root
 DB_PORT=3306
 
 ```
+* Kemudian jalankan script dibawah ini untuk melakukan migration ke database : 
+```
+npx sequelize-cli db:migrate
+```
 * Coba jalankan menggunakan script dibawah ini : 
 ```
 npm run start
@@ -52,6 +56,10 @@ jika berhasil akan muncul seperti ini :
   npm run generate-controller your_controller_name
   ```
 * jika berhasil maka akan terbuat file controller baru
+  
+### Berikut untuk link Dokumentasinya :
+https://documenter.getpostman.com/view/29164346/2s9YeG7BmN
+
 # Resources 
 * ExpressJs
 * Sequelize
