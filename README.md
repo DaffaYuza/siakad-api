@@ -56,8 +56,8 @@ jika berhasil akan muncul seperti ini :
   npm run generate-controller your_controller_name
   ```
 * jika berhasil maka akan terbuat file controller baru
-* 
-### Berikut untuk Link Dokumnetasinya :
+  
+### Berikut untuk link Dokumentasinya :
 https://documenter.getpostman.com/view/29164346/2s9YeG7BmN
 
 # Resources 
