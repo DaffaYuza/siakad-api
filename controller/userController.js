@@ -1,5 +1,5 @@
 const { Op } = require('sequelize')
-const {User} = require('../models')
+const { User, BlacklistToken } = require('../models')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 const bcrypt = require('bcrypt');
@@ -93,6 +93,14 @@ userController.register = async (req,res) =>{
         password: hashPassword,
         passwordSalt: generateSalt
     })
+    if (typeof email !== 'string' || email.trim() === '' || !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/.test(email)) {
+        return res.status(400).json({ error: 'Email harus valid dan wajib diisi' });
+    }
+    if (!username || !password) {
+        return res.status(400).json({
+            error: 'Username dan Password harus diisi',
+        });
+    }
 
     return res.status(201).json({
         message: 'User berhasil dibuat !'
