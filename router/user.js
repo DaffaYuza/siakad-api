@@ -4,5 +4,6 @@ const routeUser = express.Router()
 
 routeUser.post('/login',userController.login)
 routeUser.post('/register',userController.register)
+routeUser.post('/logout',userController.logout)
 
 module.exports = routeUser

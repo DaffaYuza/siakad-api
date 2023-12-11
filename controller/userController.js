@@ -8,6 +8,15 @@ dotenv.config()
 
 const userController = {}
 
+const isTokenBlacklisted = async (token) => {
+    const blacklistedToken = await BlacklistToken.findOne({
+        where: {
+            token: token,
+        },
+    });
+    return !!blacklistedToken;
+}
+
 /*
     this is auto generate example, you can continue 
 
@@ -89,6 +98,40 @@ userController.register = async (req,res) =>{
         message: 'User berhasil dibuat !'
     })
 } 
+
+userController.logout = async (req, res) => {
+    try {
+        const token = req.headers.authorization.split(" ")[1];
+
+        // Check if the token is blacklisted
+        const isBlacklisted = await isTokenBlacklisted(token);
+
+        if (isBlacklisted) {
+            return res.status(401).json({
+                data: {
+                    message: "Token has already been invalidated",
+                },
+            });
+        }
+
+        // Blacklist the token
+        await BlacklistToken.create({
+            token: token,
+        });
+
+        return res.status(200).json({
+            data: {
+                message: "Logout successful",
+            },
+        });
+    } catch (error) {
+        return res.status(500).json({
+            data: {
+                message: "Internal server error",
+            },
+        });
+    }
+}
 
 module.exports = userController
 
