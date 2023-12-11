@@ -65,3 +65,5 @@ https://documenter.getpostman.com/view/29164346/2s9YeG7BmN
 * Sequelize
 * Nodemon
 * mysql2
+* Bcrypt
+* Jsonwebtoken(JWT)
