@@ -1,7 +1,7 @@
 # Boilerplate Framework Backend Bootcamp Vocasia
 
 ## Overview
- Project ini sebagai acuan untuk mengerjakan project selama bootcamp berlangsung.framework ini menggunakan basic structure MVC(Model View Controller) untuk mempermudah pengerjaan project.Struktur dari project ini terinspirasi dari Laravel framework.
+Mengembangkan RESTful API untuk Sistem Informasi Akademik Kampus, sebuah platform yang memungkinkan administrasi, dosen, mata kuliah dan mahasiswa untuk mengelola informasi akademik dengan efisien. API ini dirancang untuk menyediakan layanan akses data yang cepat, aman, dan terstruktur melalui endpoint yang mendukung operasi CRUD (Create, Read, Update, Delete).
 
 ### How To Use ?
 * silahkan `use this template`
