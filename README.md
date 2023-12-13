@@ -57,7 +57,7 @@ jika berhasil akan muncul seperti ini :
   ```
 * jika berhasil maka akan terbuat file controller baru
   
-### Berikut link untuk API Dokumentasinya :
+### Berikut ini untuk link API Dokumentasinya :
 https://documenter.getpostman.com/view/29164346/2s9YeG7BmN
 
 # Resources 
