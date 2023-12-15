@@ -15,7 +15,7 @@ npm install
 ```bash
 cp .env.example .env
 ```
-* kemudian isikan configurasi pada file `.env` silahkan disesuaikan sendiri
+* kemudian isikan configurasi pada file `.env` silahkan disesuaikan dengan database yang anda buat pada MySQL
 ```
 APP_NAME = Vocasia Backend Framework
 APP_PORT = 3000
