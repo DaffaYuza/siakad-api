@@ -29,7 +29,7 @@ DB_NAME=siakad_api
 DB_USER=root
 DB_PASS=root
 DB_PORT=3306
-PRIVATE_KEY=oUSCAVtZwJ6be9p //boleh diganting dengan string random lainnya
+PRIVATE_KEY=FDMboaU5dv  //bisa diganti dengan string random lainnya
 
 ```
 * Kemudian jalankan script dibawah ini untuk melakukan migration ke database : 
