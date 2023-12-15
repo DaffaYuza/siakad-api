@@ -15,7 +15,7 @@ npm install
 ```bash
 cp .env.example .env
 ```
-* kemudian isikan configurasi pada file `.env` silahkan disesuaikan dengan database yang anda buat pada MySQL
+* Buat database terlebih dahulu pada Mysql, kemudian isikan configurasi pada file `.env`, lalu sesuaikan isinya dengan database yang telah dibuat tadi.
 ```
 APP_NAME = Vocasia Backend Framework
 APP_PORT = 3000
@@ -40,11 +40,11 @@ npx sequelize-cli db:migrate
 ```
 npm run start
 ```
-* kemudian coba akses url dibawah ini menggunakan http request app favorit kalian :
+* kemudian coba akses url dibawah ini menggunakan http request app favorit anda :
 ```
 http://localhost:3000/
 ```
-jika berhasil akan muncul seperti ini : 
+jika berhasil, maka akan muncul seperti berikut : 
 ```json
 {
     "message" : "Hello exampleController"
@@ -67,4 +67,4 @@ https://documenter.getpostman.com/view/29164346/2s9YeG7BmN
 * Nodemon
 * mysql2
 * Bcrypt
-* Jsonwebtoken(JWT)
+* JSON Web Token (JWT)
